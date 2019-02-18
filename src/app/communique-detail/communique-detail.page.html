@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-button (click)="onClose()" fill="outline">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-item>
+      <ion-label style="color: green" text-wrap="" text-center="">
+        {{communique?.nom|uppercase}}
+      </ion-label>
+    </ion-item>
+    <ion-card-content>
+      <div [innerHTML]="communique?.contenu"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

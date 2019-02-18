@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-img [src]="lien.logo"></ion-img>
+
+    <ion-slides *ngIf="partenaires && partenaires.length"
+                [pager]="true" [options]="{effect: 'flip'}">
+      <ion-slide *ngFor="let partenaire of partenaires">
+        <ion-img (click)="openPartenaire(partenaire)" [src]="partenaire.logo"></ion-img>
+      </ion-slide>
+    </ion-slides>
+
+  </ion-list>
+
+</ion-content>

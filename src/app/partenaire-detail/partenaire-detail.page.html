@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-button (click)="onClose()" fill="outline">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-img [src]="partenaire?.logo"></ion-img>
+    <ion-card-content>
+      <p>{{partenaire?.description}}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-button color="primary" slot="start" (click)="onClose()" shape="outline">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card padding="">
+    <ion-card-header>
+      <ion-card-title>{{sensibilise?.titre}}</ion-card-title>
+    </ion-card-header>
+    <iframe [src]="displayVideo(sensibilise?.video)"></iframe>
+    <ion-card-content>
+      <div [innerHTML]="sensibilise.contenu"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-img [src]="lien.logo"></ion-img>
+
+  <ion-card *ngFor="let sensibilise of sensibilises">
+    <ion-card-title> {{ sensibilise.titre}} </ion-card-title>
+    <iframe allowfullscreen 
+    [src]="afficherVideo(sensibilise.video)"></iframe>
+    <ion-card-content>
+      <div [innerHTML]="sensibilise.contenu|slice:0:340"></div>
+    </ion-card-content>
+    <ion-button slot="end" color="secondary" 
+    (click)="onSensibiliseSuite(sensibilise)">Suite...</ion-button>
+  </ion-card>
+
+</ion-content>

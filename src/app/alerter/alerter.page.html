@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="camera" (click)="openPhoto()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-img [src]="lien.logo"></ion-img>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img style="width: 100px;height: 100px" [src]="photos[0]">
+          <ion-button *ngIf="photos[0] !== 'assets/images/photo.jpg'"
+                      (click)="deletePhoto('premier')">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <img style="width: 100px;height: 100px" [src]="photos[1]">
+          <ion-button *ngIf="photos[1] !== 'assets/images/photo.jpg'"
+                      (click)="deletePhoto('deuxieme')">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center="" text-uppercase="">
+          <h4>Prendre photo</h4>
+          <ion-button fill="outline" (click)="takePhoto()">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col text-center="" text-uppercase="">
+          <h4>Ouvrir galérie</h4>
+          <ion-button fill="outline" (click)="takeGalerie()">
+            <ion-icon name="images"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <form [formGroup]="fgroup" (ngSubmit)="onAlerter(fgroup.value)">
+      <ion-item>
+        <ion-label>Type d'alerte</ion-label>
+        <ion-select formControlName="type">
+          <ion-select-option *ngFor="let alerte of alertes" [value]="alerte.type">
+            {{ alerte.type }}
+          </ion-select-option>
+        </ion-select>
+        <span class="erreur" *ngIf="!fgroup.controls['type'].valid && fgroup.controls['type'].touched">
+          Le type d'alerte est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Service Visé</ion-label>
+        <ion-select formControlName="service">
+          <ion-select-option *ngFor="let service of services" [value]="service.nom">
+            {{ service.nom }}
+          </ion-select-option>
+        </ion-select>
+        <span class="erreur" *ngIf="!fgroup.controls['service'].valid && fgroup.controls['service'].touched">
+          Le service est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Message</ion-label>
+        <ion-textarea formControlName="message"></ion-textarea>
+        <span class="erreur" *ngIf="!fgroup.controls['message'].valid && fgroup.controls['message'].touched">
+          Le message est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Région</ion-label>
+        <ion-select formControlName="region" #C (ionChange)="onSelect(C.value)">
+          <ion-select-option *ngFor="let region of regions" [value]="region.nom">
+            {{ region.nom }}
+          </ion-select-option>
+        </ion-select>
+        <span class="erreur" *ngIf="!fgroup.controls['region'].valid && fgroup.controls['region'].touched">
+          La région est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item id="departement">
+        <ion-label>Département</ion-label>
+        <ion-select formControlName="departement">
+          <ion-select-option *ngFor="let departement of departements" [value]="departement.nom">
+            {{ departement.nom }}
+          </ion-select-option>
+        </ion-select>
+        <span class="erreur" *ngIf="!fgroup.controls['departement'].valid && fgroup.controls['departement'].touched">
+          Le departement est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Commune & quartier</ion-label>
+        <ion-textarea formControlName="commune"></ion-textarea>
+        <span class="erreur" *ngIf="!fgroup.controls['commune'].valid && fgroup.controls['commune'].touched">
+          Le commune est obligatoire !
+        </span>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" [disabled]="!fgroup.valid">Soumettre</ion-button>
+    </form>
+
+    <ion-item>
+      <p style="color:green">{{message}}</p>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

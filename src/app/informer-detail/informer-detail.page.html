@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-button color="primary" slot="start" (click)="onClose()" shape="outline">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card padding="">
+    <ion-card-header>
+      <ion-card-title>{{actualite?.titre}}</ion-card-title>
+    </ion-card-header>
+    <ion-img [src]="actualite?.photo"></ion-img>
+    <ion-card-content>
+      <div [innerHTML]="actualite.contenu"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

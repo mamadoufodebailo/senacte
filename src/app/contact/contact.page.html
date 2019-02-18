@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-img [src]="lien.logo"></ion-img>
+
+  <ion-item>
+    <ion-button (click)="getTest()">Get</ion-button>
+    <ion-button (click)="savetest()">Save</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <p text-center="">Adresse: <span [innerHTML]="lien.adresse"></span></p>
+    <p text-center="">Nous contacter: {{ lien.telephone }}.</p>
+  </ion-item>
+
+  <form [formGroup]="fgroup" (ngSubmit)="onContact(fgroup.value)">
+    <ion-item>
+      <ion-label>Prénoms</ion-label>
+      <ion-input formControlName="prenoms"></ion-input>
+      <span class="erreur" *ngIf="!fgroup.controls['prenoms'].valid && fgroup.controls['prenoms'].touched">
+        Le prénom est obligatoire !
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nom</ion-label>
+      <ion-input formControlName="nom"></ion-input>
+      <span class="erreur" *ngIf="!fgroup.controls['nom'].valid && fgroup.controls['nom'].touched">
+        Le nom est obligatoire !
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+      <span class="erreur" *ngIf="!fgroup.controls['email'].valid && fgroup.controls['email'].touched">
+        L'email est obligatoire !
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-label>Message</ion-label>
+      <ion-input formControlName="message"></ion-input>
+      <span class="erreur" *ngIf="!fgroup.controls['message'].valid && fgroup.controls['message'].touched">
+        Le message est obligatoire !
+      </span>
+    </ion-item>
+
+    <span style="color: green" text-capitalize="" text-center="">
+      {{ message }}
+    </span>
+
+    <ion-button expand="full" type="submit" [disabled]="!fgroup.valid">Envoyer</ion-button>
+  </form>
+
+</ion-content>

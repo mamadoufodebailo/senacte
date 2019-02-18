@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-img [src]="lien.logo"></ion-img>
+
+    <p text-wrap="" style="color: #0bb8cc;">Inscrivez-vous aux newsletters pour être informer des communiques</p>
+
+    <form [formGroup]="fgroup" (ngSubmit)="onNews(fgroup.value)">
+      <ion-item>
+        <ion-label>Prénoms</ion-label>
+        <ion-input formControlName="prenoms"></ion-input>
+        <span class="erreur" *ngIf="!fgroup.controls['prenoms'].valid && fgroup.controls['prenoms'].touched">
+          Le prénom est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nom</ion-label>
+        <ion-input formControlName="nom"></ion-input>
+        <span class="erreur" *ngIf="!fgroup.controls['nom'].valid && fgroup.controls['nom'].touched">
+          Le nom est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Téléphone</ion-label>
+        <ion-input formControlName="telephone"></ion-input>
+        <span class="erreur" *ngIf="!fgroup.controls['telephone'].valid && fgroup.controls['telephone'].touched">
+          Le téléphone est obligatoire !
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+        <span class="erreur" *ngIf="!fgroup.controls['email'].valid && fgroup.controls['email'].touched">
+          L'email est obligatoire !
+        </span>
+      </ion-item>
+
+      <p style="color: green">{{message}}</p>
+
+      <ion-button expand="full" type="submit" [disabled]="!fgroup.valid">S'inscrire</ion-button>
+    </form>
+
+  </ion-list>
+
+</ion-content>

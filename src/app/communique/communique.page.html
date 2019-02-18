@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-img [src]="lien.logo"></ion-img>
+
+  <ion-card padding="" *ngFor="let communique of communiques">
+    <ion-item>
+      <ion-label slot="start">{{communique.nom|uppercase}}</ion-label>
+      <ion-icon name="document" (click)="openPDF(communique.id)"></ion-icon>
+      <ion-button fill="outline" (click)="openCommunique(communique)" slot="end">Voir</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div [innerHTML]="communique.contenu|slice:0:100">...</div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

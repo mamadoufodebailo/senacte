@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-img [src]="lien.logo"></ion-img>
+
+    <ion-card padding="" *ngFor="let information of informations">
+      <ion-card-title>{{information.titre}}</ion-card-title>
+      <ion-img (click)="onInformationSuite(information)" [src]="information.photo"></ion-img>
+      <ion-card-content>
+        <div [innerHTML]="information.contenu|slice:0:430"></div>
+      </ion-card-content>
+      <ion-button slot="end" color="secondary" (click)="onInformationSuite(information)">Suite...</ion-button>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

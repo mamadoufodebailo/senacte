@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-list>
+
+    <ion-img [src]="lien.logo"></ion-img>
+
+    <iframe *ngFor="let video of videos" allowfullscreen 
+    [src]="afficherVideo(video.url)"></iframe>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ion-Infinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
